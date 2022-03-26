@@ -15,7 +15,7 @@ int tm = 300;
 
 WiFiClient wifiC;
 
-PubSubClient client(mqtt_server, 1883, wifiC);
+PubSubClient client(mqtt_server, mqtt_port, wifiC);
 // PFP
 void refreshData();
 
@@ -23,6 +23,7 @@ void setup()
 {
   Serial.begin(115200);
   WiFi.begin(ssid, pass);
+  
   if (client.connect("esp32", mqtt_user, mqtt_pass))
   {
     client.publish(topic, "hello world");
